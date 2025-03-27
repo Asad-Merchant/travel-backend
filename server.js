@@ -10,7 +10,7 @@ dotenv.config()
 const app = express()
 
 app.use(cors({
-    origin: [process.env.FRONTEND_URL, process.env.ADMIN_URL]
+    origin: ['https://travel-frontend-fawn.vercel.app/', process.env.ADMIN_URL]
 }))
 
 app.use(express.json())
