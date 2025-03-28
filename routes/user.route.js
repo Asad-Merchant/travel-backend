@@ -4,6 +4,7 @@ import { transporter } from '../config/nodemailer.js'
 import { razorpay } from '../config/razorpay.js'
 import crypto from 'crypto'
 import { Package } from '../models/package.model.js'
+import { OTP_TEMPLATE } from '../config/emailTemplate.js'
 
 const userRoute = express.Router()
 
@@ -44,7 +45,8 @@ userRoute.post('/generate-otp', async(req, res)=>{
             from: process.env.GMAIL_ACCOUNT,
             to: email,
             subject: "Your OTP",
-            text: `Your OTP is ${otp}`
+            // text: `Your OTP is ${otp}`
+            html: OTP_TEMPLATE.replace('{{OTP}}', otp)
         };
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
