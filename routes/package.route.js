@@ -130,4 +130,21 @@ packageRoute.post('/delete-package', async (req, res) => {
     }
 })
 
+packageRoute.post('/package-details', async(req, res) => {
+    const {packageId} = req.body 
+    if(!packageId){
+        return res.json({success: false, msg: "Please provide ID."})
+    }
+    try {
+        const data = await Package.findById(packageId)
+        if(!data){
+            return res.json({success: false, msg: "No data found."})
+        }
+        return res.json({success: true, msg: data})
+    } catch (error) {
+        console.log(error);
+        return res.json({success: false, msg: error})
+    }
+})
+
 export default packageRoute
