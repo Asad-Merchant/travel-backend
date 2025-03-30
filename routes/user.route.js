@@ -5,6 +5,7 @@ import { razorpay } from '../config/razorpay.js'
 import crypto from 'crypto'
 import { Package } from '../models/package.model.js'
 import { OTP_TEMPLATE } from '../config/emailTemplate.js'
+import { generateToken, verifyToken } from '../config/jwt.js'
 
 const userRoute = express.Router()
 
@@ -139,6 +140,20 @@ userRoute.post('/verify-payment', async(req, res) => {
     } else {
         res.status(400).json({ success: false, msg: "Payment verification failed" });
     }
+})
+
+userRoute.post('/login', async(req, res) => {
+    const {user, pass} = req.body
+    if(!user || !pass)
+        return res.json({success: false, msg: "Please provide details."})
+    if(user!==process.env.USER || pass!==process.env.PASS)
+        return res.json({success: false, msg: "Invalid credentials"})
+    const token = generateToken(user)
+    return res.json({success: true, msg: token})
+})
+
+userRoute.post('/verify-user', verifyToken, (req, res) => {
+    return res.json({success: true, msg: "Verified"})
 })
 
 export {userRoute}

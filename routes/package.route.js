@@ -3,6 +3,7 @@ import multer from 'multer'
 import storage from '../config/multerConfig.js'
 import { deleteImage, uploadImage } from '../config/cloudinary.js'
 import { Package } from '../models/package.model.js'
+import { verifyToken } from '../config/jwt.js'
 
 
 const upload = multer({storage})
@@ -10,7 +11,7 @@ const upload = multer({storage})
 const packageRoute = express.Router()
 
 
-packageRoute.post('/regular-package',upload.single('image'), async (req, res)=>{
+packageRoute.post('/regular-package',upload.single('image'),verifyToken, async (req, res)=>{
     const filePath = req.file.path
     const to = req.body.to 
     const noDay = req.body.noDay 
@@ -47,7 +48,7 @@ packageRoute.post('/regular-package',upload.single('image'), async (req, res)=>{
 })
 
 
-packageRoute.post('/offer-package',upload.single('image'), async (req, res)=>{
+packageRoute.post('/offer-package',upload.single('image'),verifyToken, async (req, res)=>{
     const filePath = req.file.path
     const to = req.body.to 
     const noDay = req.body.noDay 
@@ -99,7 +100,7 @@ packageRoute.get('/list', async (req, res) => {
     }
 })
 
-packageRoute.get('/list-all', async (req, res) => {
+packageRoute.get('/list-all',verifyToken, async (req, res) => {
     try {
         const data = await Package.find({})
         return res.json({success: true, msg: data})
@@ -109,7 +110,7 @@ packageRoute.get('/list-all', async (req, res) => {
     }
 })
 
-packageRoute.post('/delete-package', async (req, res) => {
+packageRoute.post('/delete-package',verifyToken, async (req, res) => {
     const packageId = req.body.packageId 
     // console.log(packageId);
     if(!packageId)
