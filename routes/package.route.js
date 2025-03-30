@@ -100,7 +100,7 @@ packageRoute.get('/list', async (req, res) => {
     }
 })
 
-packageRoute.get('/list-all',verifyToken, async (req, res) => {
+packageRoute.get('/list-all', async (req, res) => {
     try {
         const data = await Package.find({})
         return res.json({success: true, msg: data})
