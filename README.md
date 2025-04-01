@@ -1,8 +1,8 @@
-# Travel Booking Website - Backend
+# ✈️ Travel Booking Website - Backend
 
 This is the backend for the Travel Booking Website, built using **Node.js, Express.js, and MongoDB**. It handles user authentication, package management, bookings, payments (Razorpay), and email notifications.
 
-## Features
+## 🚀 Features
 
 - **Package Management**: Add and delete travel packages.
 - **Booking System**: Users can book travel packages with email OTP verification.
@@ -11,7 +11,7 @@ This is the backend for the Travel Booking Website, built using **Node.js, Expre
 - **Image Uploads**: Uses **Multer** and **Cloudinary** for file handling.
 - **Secure API**: Implements authentication and authorization using JWT.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Node.js**
 - **Express.js**
@@ -21,7 +21,7 @@ This is the backend for the Travel Booking Website, built using **Node.js, Expre
 - **Multer & Cloudinary** (for image uploads)
 - **Nodemailer** (for OTP verification and booking emails)
 
-## Installation & Setup
+## 📂 Installation & Setup
 
 ### Prerequisites
 - Install **Node.js** and **MongoDB**.
@@ -58,9 +58,9 @@ This is the backend for the Travel Booking Website, built using **Node.js, Expre
 ## Deployment
 The backend is deployed on **Render**.
 
-## Frontend Repository
+## 🔗 Frontend Repository
 Frontend of this project is available at:
-- **Backend Repository:** [GitHub Link](https://github.com/Asad-Merchant/travel-backend)
+- **Frontend Repository:** [GitHub Link](https://github.com/Asad-Merchant/travel-frontend)
 - **Admin Repository:** [GitHub Link](https://github.com/Asad-Merchant/travel-admin)
 
 ## License
